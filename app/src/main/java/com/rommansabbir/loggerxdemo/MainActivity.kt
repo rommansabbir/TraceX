@@ -3,7 +3,9 @@ package com.rommansabbir.loggerxdemo
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.button.MaterialButton
 import com.rommansabbir.loggerx.registerForLoggerX
+import kotlin.system.exitProcess
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,10 +18,26 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )*/
-        registerForLoggerX { deviceInfo, thread, throwable ->
-            Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
+        registerForLoggerX { _, _, throwable ->
+            if (throwable is RuntimeException) {
+                startSecond(throwable)
+            } else {
+                Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
+            }
         }
-        Thread.sleep(3000)
-        throw RuntimeException("Test")
+        findViewById<MaterialButton>(R.id.button_main).setOnClickListener {
+            throw RuntimeException("Test")
+        }
+    }
+
+    private fun startSecond(throwable: Throwable) {
+        SecondActivity.Factory.startActivity(this, throwable)
+        exitProcess(0)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        println("Destroy")
     }
 }
+
