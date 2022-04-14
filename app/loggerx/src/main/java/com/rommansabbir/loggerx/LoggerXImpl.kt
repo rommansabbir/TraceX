@@ -37,9 +37,7 @@ internal class LoggerXImpl : LoggerX {
         override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
             /*Register Thread.setDefaultUncaughtExceptionHandler for every activity by default*/
             this@LoggerXImpl.activity = WeakReference(activity)
-            activity.apply {
-                Thread.setDefaultUncaughtExceptionHandler(thread)
-            }
+            unregisterOrUnregister(true)
         }
 
         override fun onActivityStarted(activity: Activity) {}
@@ -54,15 +52,19 @@ internal class LoggerXImpl : LoggerX {
         override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
 
         override fun onActivityDestroyed(activity: Activity) {
-            unregister(activity)
+            unregisterOrUnregister(false)
             this@LoggerXImpl.activity = WeakReference(null)
         }
 
     }
 
-    private fun unregister(activity: Activity) {
+    private fun unregisterOrUnregister(isRegister: Boolean) {
         activity.apply {
-            Thread.setDefaultUncaughtExceptionHandler(null)
+            activity.get()?.let {
+                if (!isRegister) Thread.setDefaultUncaughtExceptionHandler(null) else Thread.setDefaultUncaughtExceptionHandler(
+                    thread
+                )
+            }
         }
     }
 
