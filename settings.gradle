@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "LoggerX"
 include ':app'
+include ':app:loggerx'
