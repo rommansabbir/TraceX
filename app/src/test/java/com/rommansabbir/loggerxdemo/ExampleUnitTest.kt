@@ -1,4 +1,4 @@
-package com.rommansabbir.loggerx
+package com.rommansabbir.loggerxdemo
 
 import org.junit.Test
 
