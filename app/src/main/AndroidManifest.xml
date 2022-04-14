@@ -11,7 +11,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LoggerX">
         <activity
-            android:name="com.rommansabbir.loggerxdemo.MainActivity"
+            android:name=".SecondActivity"
+            android:exported="true" />
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
