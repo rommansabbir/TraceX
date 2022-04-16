@@ -70,7 +70,7 @@ internal abstract class BaseTraceXImpl : TraceX {
 
     private fun initStoreX(config: TraceXConfig) {
         StoreXCore.init(config.application, mutableListOf(storeXConfig))
-        StoreXCore.setEncryptionKey(BuildConfig.LOGGER_X_LOGGING_ENCRYPTION_KEY)
+        StoreXCore.setEncryptionKey(BuildConfig.STOREX_X_LOGGING_ENCRYPTION_KEY)
     }
 
     protected fun checkInitialization() {
