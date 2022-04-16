@@ -1,8 +1,8 @@
 package com.rommansabbir.tracexdemo
 
 import android.app.Application
-import com.rommansabbir.tracex.TraceXConfig
-import com.rommansabbir.tracex.TraceXProvider
+import com.rommansabbir.tracex.config.TraceXConfig
+import com.rommansabbir.tracex.provider.TraceXProvider
 
 class DemoApplication : Application() {
     override fun onCreate() {

@@ -6,8 +6,8 @@ import android.os.Bundle
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.rommansabbir.tracex.registerForTraceX
-import com.rommansabbir.tracex.makeReadable
+import com.rommansabbir.tracex.extensions.makeReadable
+import com.rommansabbir.tracex.extensions.registerForTraceX
 
 class SecondActivity : AppCompatActivity() {
     object Factory {
@@ -26,7 +26,7 @@ class SecondActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
-        registerForTraceX { _, _, throwable,p ->
+        registerForTraceX { _, _, throwable, p ->
             if (throwable is RuntimeException) {
                 println("")
             } else {

@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
-import com.rommansabbir.tracex.ProcessKiller
-import com.rommansabbir.tracex.TraceXProvider
-import com.rommansabbir.tracex.registerForTraceX
+import com.rommansabbir.tracex.processkiller.ProcessKiller
+import com.rommansabbir.tracex.provider.TraceXProvider
+import com.rommansabbir.tracex.extensions.registerForTraceX
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
             }
         )*/
         registerForTraceX { _, _, throwable, p ->
-            TraceXProvider.INSTANCE.reportLog(throwable, "Test Exception.")
+            TraceXProvider.INSTANCE.writeANewLog(throwable, "Test Exception.")
             Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
             p.killProcess()
 /*            if (throwable is RuntimeException) {
