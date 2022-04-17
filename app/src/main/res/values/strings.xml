@@ -4,4 +4,5 @@
     <string name="throw_runtimeexception">Throw RuntimeException</string>
     <string name="total_logs_found">Total logs found :</string>
     <string name="most_recent_log">Most recent log:</string>
+    <string name="throw_runtime_exception_and_goto_2nd_activity">Throw Runtime Exception and Goto 2nd Activity</string>
 </resources>

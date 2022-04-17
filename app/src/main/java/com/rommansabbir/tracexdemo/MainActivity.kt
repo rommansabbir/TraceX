@@ -14,27 +14,18 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-        /*registerForLoggerX(
-            object : LoggerXCallback {
-                override fun onEvent(deviceInfo: DeviceInfo, thread: Thread, throwable: Throwable) {
-
-                }
-            }
-        )*/
         registerForTraceX { _, _, throwable, p ->
+            if (throwable is DemoException) {
+                startSecond(throwable)
+            }
             Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
             p.killProcess()
-/*            if (throwable is RuntimeException) {
-                startSecond(throwable)
-            } else {
-                *//*TraceXProvider.INSTANCE.writeANewLog(throwable, "Put your JSON object here.")*//*
-                Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
-            }*/
         }
         findViewById<MaterialButton>(R.id.button_main).setOnClickListener {
-            /*LoggerXProvider.INSTANCE.clearAllLogs(this)*/
             throw RuntimeException("Test")
+        }
+        findViewById<MaterialButton>(R.id.btn_go_to_next).setOnClickListener {
+            throw DemoException()
         }
         getAllLogs()
     }
