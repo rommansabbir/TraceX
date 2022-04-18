@@ -10,15 +10,20 @@ import com.rommansabbir.tracex.extensions.registerForTraceX
 import com.rommansabbir.tracex.processkiller.ProcessKiller
 import com.rommansabbir.tracex.provider.TraceXProvider
 
+@SuppressLint("SetTextI18n")
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        /*Register for Uncaught Error event*/
         registerForTraceX { _, _, throwable, p ->
+            /*If RuntimeException, go to another activity*/
             if (throwable is DemoException) {
                 startSecond(throwable)
             }
             Toast.makeText(this@MainActivity, throwable.message, Toast.LENGTH_SHORT).show()
+            /*Kill the process normally*/
             p.killProcess()
         }
         findViewById<MaterialButton>(R.id.button_main).setOnClickListener {
@@ -30,7 +35,6 @@ class MainActivity : AppCompatActivity() {
         getAllLogs()
     }
 
-    @SuppressLint("SetTextI18n")
     private fun getAllLogs() {
         val logs = TraceXProvider.INSTANCE.getRecentCrashLogs()
         findViewById<TextView>(R.id.tv_logs_counter).text =
@@ -45,6 +49,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startSecond(throwable: Throwable) {
         SecondActivity.Factory.startActivity(this, throwable)
+        /*Kill the process normally*/
         ProcessKiller.killProcess()
     }
 

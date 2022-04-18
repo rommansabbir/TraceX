@@ -7,9 +7,10 @@ import com.rommansabbir.tracex.provider.TraceXProvider
 class DemoApplication : Application() {
     override fun onCreate() {
         super.onCreate()
-        TraceXProvider.register(TraceXConfig(this, true))
-        val logs = TraceXProvider.INSTANCE.getRecentCrashLogs()
-        val s = "Last Crash Logs: ${logs.size}"
-        println(s)
+        /*Initialize TraceX with TraceXConfig*/
+        TraceXProvider.register(TraceXConfig(this,
+            autoRegisterForEachActivity = true,
+            autoLogRuntimeExceptions = true
+        ))
     }
 }

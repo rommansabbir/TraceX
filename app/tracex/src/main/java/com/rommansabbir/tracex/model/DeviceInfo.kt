@@ -5,6 +5,7 @@ import android.content.ContentResolver
 import android.os.Build
 import android.provider.Settings
 
+@SuppressLint("HardwareIds")
 class DeviceInfo private constructor(
     val brand: String,
     val deviceId: String,
@@ -21,7 +22,6 @@ class DeviceInfo private constructor(
     val fingerPrint: String,
     val versionCode: String
 ) {
-    @SuppressLint("HardwareIds")
     object Builder {
         fun build(contentResolver: ContentResolver? = null): DeviceInfo {
             return DeviceInfo(

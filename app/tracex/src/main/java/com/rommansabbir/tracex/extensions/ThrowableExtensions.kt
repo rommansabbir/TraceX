@@ -17,7 +17,6 @@ fun Throwable.makeReadable(): String {
     return sw.toString()
 }
 
-
 /**
  * Throw a new exception [TraceXNotInitializedException].
  */
