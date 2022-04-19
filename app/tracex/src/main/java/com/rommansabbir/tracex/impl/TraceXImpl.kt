@@ -27,16 +27,19 @@ internal class TraceXImpl : BaseTraceXImpl() {
         return writeLogToCacheDir(throwable, additionalInfo)
     }
 
+    /*Note: It's a slower process, execute the operation with Coroutine/RxJava.*/
     override fun getRecentCrashLogs(): MutableList<TraceXCrashLog> {
         checkInitialization()
         return getRecentCrashLogsBase()
     }
 
+    /*Note: It's a slower process, execute the operation with Coroutine/RxJava.*/
     override fun clearCrashLogs(list: MutableList<TraceXCrashLog>) {
         checkInitialization()
         clearCrashLogsBase(list)
     }
 
+    /*Note: It's a slower process, execute the operation with Coroutine/RxJava.*/
     override fun clearAllLogs(): Boolean {
         checkInitialization()
         clearAllLogsBase()

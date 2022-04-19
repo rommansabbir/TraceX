@@ -5,8 +5,8 @@ import kotlin.system.exitProcess
 object ProcessKiller {
     /**
      * Terminates the currently running process as normal termination.
+     *
+     * @return [Nothing].
      */
-    fun killProcess() {
-        exitProcess(0)
-    }
+    fun killProcess(): Nothing = exitProcess(0)
 }

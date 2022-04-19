@@ -7,12 +7,12 @@ import com.rommansabbir.tracex.impl.TraceXImpl
 object TraceXProvider {
     private val impl by lazy { TraceXImpl() }
 
-    /*Initialize LoggerX*/
+    /*Initialize TraceX*/
     fun register(config: TraceXConfig) {
         impl.init(config)
     }
 
-    /*Return LoggerX instance*/
+    /*Return TraceX instance*/
     val INSTANCE: TraceX
         get() = impl
 }

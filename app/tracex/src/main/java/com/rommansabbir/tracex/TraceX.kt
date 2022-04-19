@@ -12,8 +12,8 @@ import com.rommansabbir.tracex.model.TraceXCrashLog
  * and manually register an [Activity] for monitoring by calling [TraceX.registerActivity] API.
  *
  * [TraceX] will automatically write a log to the app cache directory if the Uncaught Exception
- * is an instance of [RuntimeException]. Client can also write a new log the the app cache directory
- * by calling [TraceX.writeANewLog] API.
+ * is an instance of [RuntimeException] based on Config. Client can also write a new log the the
+ * app cache directory by calling [TraceX.writeANewLog] API.
  *
  * Also, client can get all logs written by [TraceX] or client itself by
  * calling [TraceX.writeANewLog] API.
