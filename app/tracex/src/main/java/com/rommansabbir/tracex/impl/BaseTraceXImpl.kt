@@ -172,7 +172,7 @@ internal abstract class BaseTraceXImpl : TraceX {
     /**
      * Clear all given logs written by [TraceX].
      *
-     * Note: It's a slower process, execute the operation with Coroutine/RxJava.
+     * Note: It's a CPU Intensive process, execute the operation with Coroutine/RxJava.
      *
      * @param list List to be removed from cache.
      */
@@ -191,7 +191,7 @@ internal abstract class BaseTraceXImpl : TraceX {
     /**
      * Clear all logs written by [TraceX].
      *
-     * Note: It's a slower process, execute the operation with Coroutine/RxJava.
+     * Note: It's a CPU Intensive process, execute the operation with Coroutine/RxJava.
      */
     protected fun clearAllLogsBase() {
         config?.application?.cacheDir?.listFiles()?.forEach {
@@ -208,7 +208,7 @@ internal abstract class BaseTraceXImpl : TraceX {
     /**
      * Get all logs written by [TraceX].
      *
-     * Note: It's a slower process, execute the operation with Coroutine/RxJava.
+     * Note: It's a CPU Intensive process, execute the operation with Coroutine/RxJava.
      *
      * @return [MutableList]<[TraceXCrashLog]>.
      */
